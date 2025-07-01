@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MashReel</title>
+    <!-- Use a more elegant Google Font: 'Merriweather' -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Add Font Awesome for icon logo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  </head>
+<body>
+  <h1>
+    <!-- Film icon as logo using Font Awesome -->
+    <i class="fas fa-film logo-icon"></i>
+    MashReel
+  </h1>
+  <!-- Tagline for the app -->
+  <p id="tagline">Where Movie Worlds Collide</p>
+  <!-- Input fields for movie titles with accessible hidden labels -->
+  <div class="input-group">
+    <label for="movie1" class="visually-hidden">First movie title</label>
+    <input type="text" id="movie1" placeholder="Enter first movie title" autocomplete="off">
+    <label for="movie2" class="visually-hidden">Second movie title</label>
+    <input type="text" id="movie2" placeholder="Enter second movie title" autocomplete="off">
+    <button id="generateBtn">Generate Poster</button>
+  </div>
+  <!-- Container for the generated image -->
+  <div id="img-container"></div>
+  <script src="secrets.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
