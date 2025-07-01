@@ -1,52 +1,80 @@
-// Get references to elements
-const imgContainer = document.getElementById('img-container');
-const generateBtn = document.getElementById('generateBtn');
-const movie1Input = document.getElementById('movie1');
-const movie2Input = document.getElementById('movie2');
+// script.js
+const randomBtn = document.getElementById("random-btn");
+const remixBtn = document.getElementById("remix-btn");
+const remixThemeSelect = document.getElementById("remix-theme");
+const recipeDisplay = document.getElementById("recipe-display");
+const remixOutput = document.getElementById("remix-output");
 
-// This function generates a movie poster mashup using the two movie titles
-async function generateImage() {
-  // Get the movie titles from the input fields
-  const movie1 = movie1Input.value;
-  const movie2 = movie2Input.value;
+let currentRecipeData = null;
 
-  // Create a prompt for the image generation
-  const prompt = `A fun movie poster mashup of "${movie1}" and "${movie2}"`;
+async function fetchAndDisplayRandomRecipe() {
+  recipeDisplay.innerHTML = "<p>Loading...</p>";
+  remixOutput.textContent = "";
 
-  const apiUrl  = 'https://api.openai.com/v1/images/generations';
-  const requestBody = {
-    model: 'gpt-image-1',
-    quality: 'medium',
-    prompt,
-    n: 1,
-    size: '1024x1536'
-  };
+  const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+  const data = await res.json();
+  currentRecipeData = data;
 
-  // Show a loading message
-  imgContainer.textContent = 'Creating your poster...';
+  const recipe = data.meals[0];
 
-  try {
-    const response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify(requestBody)
-    });
-
-    const jsonResponse = await response.json();
-    const data = jsonResponse.data;
-    const base64Image = data[0].b64_json;
-
-    // Display the image in the #img-container
-    imgContainer.innerHTML = `<img src="data:image/png;base64,${base64Image}" alt="${prompt}">`;
-  } catch (error) {
-    // Show an error message if image generation fails
-    imgContainer.textContent = 'Sorry, an image could not be created. Please try again.';
-    console.error('Image generation failed:', error);
+  let ingHtml = "";
+  for (let i = 1; i <= 20; i++) {
+    const ing = recipe[`strIngredient${i}`];
+    const meas = recipe[`strMeasure${i}`];
+    if (ing && ing.trim()) {
+      ingHtml += `<li>${meas ? `${meas} ` : ""}${ing}</li>`;
+    }
   }
+
+  recipeDisplay.innerHTML = `
+    <h2>${recipe.strMeal}</h2>
+    <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
+    <div>
+      <strong>Ingredients:</strong>
+      <ul>${ingHtml}</ul>
+    </div>
+    <div>
+      <strong>Instructions:</strong>
+      <p>${recipe.strInstructions}</p>
+    </div>
+  `;
 }
 
-// Run generateImage when the button is clicked
-generateBtn.addEventListener('click', generateImage);
+async function remixRecipe() {
+  remixOutput.textContent = "Remixing...";
+  const remixTheme = remixThemeSelect.value;
+  if (!currentRecipeData || !remixTheme) {
+    remixOutput.textContent = "Please load a recipe first!";
+    return;
+  }
+
+  const prompt = `
+Here is a recipe response from TheMealDB API:
+${JSON.stringify(currentRecipeData)}
+
+Remix the first recipe in the data for this theme: "${remixTheme}"
+Give clear, step-by-step instructions and mention any changed ingredients. Make it short, creative, fun, and actually possible.
+`;
+
+  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${OPENAI_API_KEY}`
+    },
+    body: JSON.stringify({
+      model: "gpt-4.1",
+      messages: [
+        { role: "system", content: "You are a helpful, creative recipe developer. You understand TheMealDB API JSON." },
+        { role: "user", content: prompt }
+      ]
+    })
+  });
+
+  const data = await response.json();
+  remixOutput.textContent = data.choices?.[0]?.message?.content || "Sorry, I couldn't remix the recipe.";
+}
+
+randomBtn.addEventListener("click", fetchAndDisplayRandomRecipe);
+remixBtn.addEventListener("click", remixRecipe);
+document.addEventListener("DOMContentLoaded", fetchAndDisplayRandomRecipe);
