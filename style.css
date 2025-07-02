@@ -3,7 +3,7 @@
 }
 
 body {
-  background: #f9fafb;
+  background: #eceef0;
   font-family: 'Lora', serif;
   color: #222;
   margin: 0;
@@ -22,13 +22,15 @@ main {
 }
 
 h1 {
-  text-align: center;
   margin-bottom: 0;
-  font-size: 48px;
-  font-weight: 800;
+  font-size: 52px;
+  font-weight: bold;
   color: #4568dc;
   letter-spacing: 0;
   line-height: 1.15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 h2, h3 {
@@ -59,8 +61,6 @@ p {
   box-shadow: 0 4px 20px rgba(90, 110, 255, 0.10);
   cursor: pointer;
   transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
-  /* position: relative;  not needed unless absolutely positioned children */
-  overflow: hidden;
 }
 
 #random-btn:hover, #random-btn:focus {
@@ -78,8 +78,7 @@ p {
   background: #fff;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(70,100,220,0.06);
-  padding: 32px 24px 24px 24px;
-  /* margin-bottom: 0;  not needed, default is 0 */
+  padding: 24px;
 }
 
 #recipe-display img {
@@ -95,13 +94,12 @@ p {
 #recipe-display ul {
   padding-left: 22px;
   margin: 8px 0 18px 0;
+  line-height: 1.5;
 }
 
-#recipe-display strong {
-  display: block;
-  margin-top: 12px;
+#recipe-display h3 {
   margin-bottom: 4px;
-  color: #7d53ea;
+  color: #4568dc; /* Matches main heading color for better harmony */
   font-size: 18px;
 }
 
@@ -119,15 +117,13 @@ p {
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  /* margin-bottom: 0;  unnecessary */
   flex-wrap: wrap;
 }
 
 .remix-controls label {
   font-weight: bold;
-  /* margin-bottom: 0;  unnecessary */
   white-space: nowrap;
-  font-size: 16px;
+  font-size: 18px;
 }
 
 #remix-theme {
@@ -174,14 +170,11 @@ p {
   min-height: 40px;
   white-space: pre-line;
   width: 100%;
-  /* box-sizing: border-box; already handled globally */
 }
 
 /* Icon styles */
 .icon-main {
-  font-size: 48px;
-  vertical-align: middle;
-  color: #4568dc;
+  font-size: inherit;
   margin-right: 8px;
 }
 .icon-btn {

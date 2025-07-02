@@ -30,11 +30,11 @@ async function fetchAndDisplayRandomRecipe() {
     <h2>${recipe.strMeal}</h2>
     <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
     <div>
-      <strong>Ingredients:</strong>
+      <h3>Ingredients:</h3>
       <ul>${ingHtml}</ul>
     </div>
     <div>
-      <strong>Instructions:</strong>
+      <h3>Instructions:</h3>
       <p>${recipe.strInstructions}</p>
     </div>
   `;
@@ -43,7 +43,7 @@ async function fetchAndDisplayRandomRecipe() {
 async function remixRecipe() {
   remixOutput.textContent = "Remixing...";
   const remixTheme = remixThemeSelect.value;
-  
+
   const prompt = `
     Here is a recipe response from TheMealDB API:
     ${JSON.stringify(currentRecipeData)}
