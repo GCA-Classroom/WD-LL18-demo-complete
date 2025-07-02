@@ -4,7 +4,7 @@
 
 body {
   background: #eceef0;
-  font-family: 'Lora', serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   color: #222;
   margin: 0;
   padding: 0;
@@ -14,11 +14,15 @@ body {
 main {
   width: 95%;
   max-width: 750px;
-  margin: 24px auto 48px auto;
+  margin: 10px auto 48px auto;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
   gap: 32px;
+}
+
+h1, h2, h3, label {
+  font-family: 'Lora', serif;
 }
 
 h1 {
@@ -47,7 +51,7 @@ p {
 }
 
 #random-btn {
-  margin: 0 auto 15px auto;
+  margin: 0 auto 10px auto;
   display: block;
   background: linear-gradient(90deg, #5a6fff 0%, #7092ff 100%);
   color: #fff;
@@ -62,13 +66,11 @@ p {
   cursor: pointer;
   transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
 }
-
 #random-btn:hover, #random-btn:focus {
   background: linear-gradient(90deg, #7092ff 0%, #5a6fff 100%);
   transform: translateY(-2px) scale(1.04);
   box-shadow: 0 8px 32px rgba(90, 110, 255, 0.16);
 }
-
 #random-btn:active {
   background: #4669cc;
   transform: scale(0.98);
@@ -80,7 +82,6 @@ p {
   box-shadow: 0 2px 8px rgba(70,100,220,0.06);
   padding: 24px;
 }
-
 #recipe-display img {
   width: 100%;
   height: 220px;
@@ -90,18 +91,17 @@ p {
   margin: 0 0 24px;
   box-shadow: 0 2px 8px rgba(60,90,180,0.10);
 }
-
 #recipe-display ul {
   padding-left: 22px;
   margin: 8px 0 18px 0;
   line-height: 1.5;
 }
-
 #recipe-display h3 {
   margin-bottom: 4px;
-  color: #4568dc; /* Matches main heading color for better harmony */
+  color: #4568dc;
   font-size: 18px;
 }
+
 .remix-container {
   background: #fff;
   border-radius: 12px;
@@ -119,7 +119,6 @@ p {
   flex-wrap: nowrap;
   width: 100%;
 }
-
 .remix-controls label {
   font-weight: bold;
   white-space: nowrap;
@@ -150,12 +149,10 @@ p {
   max-width: 100%;
   white-space: nowrap;
 }
-
 .accent-btn:hover,
 .accent-btn:focus {
   background: #5a6fff;
 }
-
 .accent-btn:active {
   background: #4669cc;
 }
@@ -195,7 +192,6 @@ p {
   gap: 10px;
   width: 100%;
 }
-
 .select-container select {
   flex: 1 1 0;
   height: 44px;
@@ -205,7 +201,6 @@ p {
   background: #f5f7fa;
   transition: border 0.15s;
 }
-
 .select-container .accent-btn {
   flex: 1 1 0;
   height: 44px;
@@ -214,7 +209,6 @@ p {
   justify-content: center;
   max-width: none;
   width: 100%;
-  /* Ensures button fills remaining space and is flush with container edge */
 }
 
 /* Responsive fix: stack controls vertically on small screens */
@@ -238,4 +232,79 @@ p {
     width: 100%;
     max-width: 100%;
   }
+}
+
+#saved-recipes-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(70,100,220,0.06);
+  overflow: hidden;
+}
+
+.saved-recipe-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f2fa;
+  transition: background 0.15s;
+}
+.saved-recipe-item:last-child {
+  border-bottom: none;
+}
+.saved-recipe-item span {
+  text-align: left;
+  flex: 1 1 auto;
+  font-size: 18px;
+  color: #4568dc;
+  cursor: pointer;
+  transition: color 0.15s;
+  padding: 4px 0;
+}
+.saved-recipe-item span:hover,
+.saved-recipe-item span:focus {
+  color: #5a6fff;
+  text-decoration: underline;
+}
+
+.delete-btn {
+  background: #f5f7fa;
+  border: none;
+  color: #b00;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.15s, color 0.15s;
+  margin-left: 12px;
+  text-align: right;
+}
+.delete-btn:hover {
+  background: #b00;
+  color: #fff;
+}
+
+.save-inline-btn {
+  padding: 8px 18px;
+  font-size: 16px;
+  height: 40px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.delete-btn:hover {
+  background: #b00;
+  color: #fff;
+}
+
+.save-inline-btn {
+  padding: 8px 18px;
+  font-size: 16px;
+  height: 40px;
+  margin-bottom: 0;
+  flex-shrink: 0;
 }
