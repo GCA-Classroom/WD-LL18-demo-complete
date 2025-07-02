@@ -29,14 +29,10 @@ async function fetchAndDisplayRandomRecipe() {
   recipeDisplay.innerHTML = `
     <h2>${recipe.strMeal}</h2>
     <img src="${recipe.strMealThumb}" alt="${recipe.strMeal}" />
-    <div>
-      <h3>Ingredients:</h3>
-      <ul>${ingHtml}</ul>
-    </div>
-    <div>
-      <h3>Instructions:</h3>
-      <p>${recipe.strInstructions}</p>
-    </div>
+    <h3>Ingredients:</h3>
+    <ul>${ingHtml}</ul>
+    <h3>Instructions:</h3>
+    <p>${recipe.strInstructions.replace(/\r?\n/g, "<br>")}</p>
   `;
 }
 
@@ -52,23 +48,27 @@ async function remixRecipe() {
     Give clear, step-by-step instructions and mention any changed ingredients. Make it very short, creative, fun, and actually possible.
   `;
 
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${OPENAI_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: "gpt-4.1",
-      messages: [
-        { role: "system", content: "You are a helpful, creative recipe developer. You understand TheMealDB API JSON." },
-        { role: "user", content: prompt }
-      ]
-    })
-  });
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${OPENAI_API_KEY}`
+      },
+      body: JSON.stringify({
+        model: "gpt-4.1",
+        messages: [
+          { role: "system", content: "You are a helpful, creative recipe developer. You understand TheMealDB API JSON." },
+          { role: "user", content: prompt }
+        ]
+      })
+    });
 
-  const data = await response.json();
-  remixOutput.textContent = data.choices?.[0]?.message?.content || "Sorry, I couldn't remix the recipe.";
+    const data = await response.json();
+    remixOutput.textContent = data.choices[0].message.content;
+  } catch (error) {
+    remixOutput.textContent = "Sorry, something went wrong remixing the recipe.";
+  }
 }
 
 randomBtn.addEventListener("click", fetchAndDisplayRandomRecipe);

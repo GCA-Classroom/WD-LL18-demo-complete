@@ -102,7 +102,6 @@ p {
   color: #4568dc; /* Matches main heading color for better harmony */
   font-size: 18px;
 }
-
 .remix-container {
   background: #fff;
   border-radius: 12px;
@@ -171,7 +170,7 @@ p {
   border: 1px solid #e5e7f0;
   min-height: 40px;
   white-space: pre-line;
-  width: 100%;
+  list-style: 1.5;
 }
 
 /* Icon styles */
