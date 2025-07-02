@@ -53,7 +53,7 @@ Here is a recipe response from TheMealDB API:
 ${JSON.stringify(currentRecipeData)}
 
 Remix the first recipe in the data for this theme: "${remixTheme}"
-Give clear, step-by-step instructions and mention any changed ingredients. Make it short, creative, fun, and actually possible.
+Give clear, step-by-step instructions and mention any changed ingredients. Make it very short, creative, fun, and actually possible.
 `;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {

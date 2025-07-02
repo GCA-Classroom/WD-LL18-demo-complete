@@ -3,29 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <title>Remix My Recipe!</title>
+  <!-- Google Fonts for text -->
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Material Icons for UI icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main>
-    <h1>Remix My Recipe!</h1>
-    <button id="random-btn" class="main-btn">Surprise Me Again!</button>
+    <h1>
+      <span class="material-icons icon-main">restaurant_menu</span>
+      Remix My Recipe!
+    </h1>
+    <button id="random-btn" class="main-btn">
+      <span class="material-icons icon-btn">casino</span>
+      Surprise Me Again!
+    </button>
 
     <div id="recipe-display"></div>
 
-    <div class="remix-controls">
-      <label for="remix-theme">Choose a remix theme:</label>
-      <select id="remix-theme">
-        <option>Make it vegan</option>
-        <option>Turn it into a dessert</option>
-        <option>Remix it for breakfast</option>
-        <option>Make it work in a dorm room with a microwave</option>
-        <option>Make this dish using only ingredients you could find at a gas station</option>
-      </select>
-      <button id="remix-btn" class="accent-btn">Remix!</button>
+    <div class="remix-container">
+      <div class="remix-controls">
+        <label for="remix-theme">
+          <span class="material-icons icon-label">auto_awesome</span>
+          Choose a remix theme:
+        </label>
+        <select id="remix-theme">
+          <option>Make it vegan</option>
+          <option>Turn it into a dessert</option>
+          <option>Remix it for breakfast</option>
+          <option>Make it work in a dorm room with a microwave</option>
+          <option>Make this dish using only ingredients you could find at a gas station</option>
+        </select>
+        <button id="remix-btn" class="accent-btn">
+          <span class="material-icons icon-btn">auto_fix_high</span>
+          Remix!
+        </button>
+      </div>
+      <div id="remix-output" class="remix-box"></div>
     </div>
-    <div id="remix-output" class="remix-box"></div>
-
   </main>
   <script src="secrets.js"></script>
   <script src="script.js"></script>

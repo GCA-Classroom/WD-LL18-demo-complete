@@ -12,8 +12,8 @@ body {
 }
 
 main {
-  max-width: 600px;
-  margin: 48px auto 48px auto;
+  max-width: 700px;
+  margin: 24px auto 48px auto;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ main {
 
 h1 {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 0;
   font-size: 48px;
   font-weight: 800;
   color: #4568dc;
@@ -45,7 +45,7 @@ h3 {
 }
 
 #random-btn {
-  margin: 0 auto 32px auto;
+  margin: 0 auto 10px auto;
   display: block;
   background: linear-gradient(90deg, #5a6fff 0%, #7092ff 100%);
   color: #fff;
@@ -87,7 +87,7 @@ h3 {
   max-width: 260px;
   border-radius: 12px;
   display: block;
-  margin: 0 auto 18px auto;
+  margin: 0 0 18px;
   box-shadow: 0 2px 8px rgba(60,90,180,0.10);
 }
 
@@ -104,16 +104,30 @@ h3 {
   font-size: 18px;
 }
 
-.remix-controls {
-  display: flex;
-  align-items: flex-end;
-  gap: 14px;
-  margin-bottom: 0;
-  flex-wrap: wrap;
+.remix-container {
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(70,100,220,0.06);
-  padding: 18px 18px 10px 18px;
+  padding: 18px 18px 18px 18px;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.remix-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .remix-controls label {
@@ -135,7 +149,6 @@ h3 {
 .accent-btn {
   background: #7092ff;
   color: #fff;
-  align-self: flex-end;
   border-radius: 8px;
   padding: 10px 20px;
   font-size: 16px;
@@ -144,6 +157,9 @@ h3 {
   box-shadow: 0 2px 8px rgba(70,100,220,0.07);
   cursor: pointer;
   transition: background 0.18s;
+  align-self: center;
+  max-width: 100%;
+  white-space: nowrap;
 }
 
 .accent-btn:active {
@@ -152,22 +168,59 @@ h3 {
 
 .remix-box {
   background: #f5f7fa;
-  border-radius: 12px;
-  padding: 18px;
-  margin-top: 10px;
+  border-radius: 10px;
+  padding: 16px;
+  margin-top: 16px;
   margin-bottom: 0;
   font-size: 17px;
   color: #455;
   border: 1px solid #e5e7f0;
   min-height: 40px;
   white-space: pre-line;
+  width: 100%;
+  box-sizing: border-box;
 }
 
+/* Icon styles */
+.icon-main {
+  font-size: 48px;
+  vertical-align: middle;
+  color: #4568dc;
+  margin-right: 8px;
+}
+
+.icon-btn {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+.icon-label {
+  font-size: 20px;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* Responsive fix: stack controls vertically on small screens */
 @media (max-width: 600px) {
+  .remix-controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px 6px 10px 6px;
+  }
+  .accent-btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
   main { padding: 0 4px; }
   #recipe-display, .remix-controls { padding: 12px 6px 10px 6px; }
   h1 { font-size: 32px; }
   h2 { font-size: 18px; }
   h3 { font-size: 15px; }
   #recipe-display img { max-width: 98vw; }
+  .remix-box {
+    margin-top: 12px;
+    font-size: 15px;
+  }
 }
