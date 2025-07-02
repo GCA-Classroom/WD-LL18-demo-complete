@@ -43,18 +43,14 @@ async function fetchAndDisplayRandomRecipe() {
 async function remixRecipe() {
   remixOutput.textContent = "Remixing...";
   const remixTheme = remixThemeSelect.value;
-  if (!currentRecipeData || !remixTheme) {
-    remixOutput.textContent = "Please load a recipe first!";
-    return;
-  }
-
+  
   const prompt = `
-Here is a recipe response from TheMealDB API:
-${JSON.stringify(currentRecipeData)}
+    Here is a recipe response from TheMealDB API:
+    ${JSON.stringify(currentRecipeData)}
 
-Remix the first recipe in the data for this theme: "${remixTheme}"
-Give clear, step-by-step instructions and mention any changed ingredients. Make it very short, creative, fun, and actually possible.
-`;
+    Remix the first recipe in the data for this theme: "${remixTheme}"
+    Give clear, step-by-step instructions and mention any changed ingredients. Make it very short, creative, fun, and actually possible.
+  `;
 
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
