@@ -114,16 +114,18 @@ p {
 
 .remix-controls {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   gap: 10px;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .remix-controls label {
   font-weight: bold;
   white-space: nowrap;
   font-size: 18px;
+  width: 100%;
 }
 
 #remix-theme {
@@ -191,11 +193,12 @@ p {
 .select-container {
   display: flex;
   flex-direction: row;
-  align-items: center;
   gap: 10px;
+  width: 100%;
 }
+
 .select-container select {
-  flex: 1 1 0%;
+  flex: 1 1 0;
   height: 44px;
   font-size: 16px;
   border-radius: 8px;
@@ -203,12 +206,16 @@ p {
   background: #f5f7fa;
   transition: border 0.15s;
 }
+
 .select-container .accent-btn {
-  flex: 0 0 auto;
+  flex: 1 1 0;
   height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  max-width: none;
+  width: 100%;
+  /* Ensures button fills remaining space and is flush with container edge */
 }
 
 /* Responsive fix: stack controls vertically on small screens */
