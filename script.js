@@ -118,14 +118,12 @@ async function remixRecipe() {
     Give clear, step-by-step instructions and mention any changed ingredients. Make it very short, creative, fun, and actually possible.
   `;
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://mealdb-mashup-worker.guil-c5e.workers.dev/", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "gpt-4.1",
         messages: [
           { role: "system", content: "You are a helpful, creative recipe developer. You understand TheMealDB API JSON." },
           { role: "user", content: prompt }
